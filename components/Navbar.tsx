@@ -26,6 +26,15 @@ export default function Navbar() {
             <Link href="/faq" className="text-sm font-light hover:text-accent transition-colors">
               常见问题
             </Link>
+            <Link href="/console" className="text-sm font-light hover:text-accent transition-colors">
+              控制台
+            </Link>
+            <Link href="/premium" className="text-sm font-light hover:text-accent transition-colors">
+              付费专属
+            </Link>
+            <Link href="/progress" className="text-sm font-light hover:text-accent transition-colors">
+              学习进度
+            </Link>
           </div>
 
           {/* 移动导航（简化版） */}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Sans_SC, Playfair_Display, Noto_Serif_SC } from "next/font/google";
 import "./globals.css";
+import AuthProvider from "@/components/AuthProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -41,7 +42,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${notoSansSC.variable} ${playfairDisplay.variable} ${notoSerifSC.variable} font-sans`}
       >
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
