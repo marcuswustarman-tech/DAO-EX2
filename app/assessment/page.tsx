@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import InterviewModal from '@/components/InterviewModal';
 import {
   assessmentQuestions,
   calculateDimensionScores,
@@ -16,6 +17,7 @@ export default function AssessmentPage() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [showResults, setShowResults] = useState(false);
+  const [showInterviewModal, setShowInterviewModal] = useState(false);
 
   const progress = ((currentQuestion + 1) / assessmentQuestions.length) * 100;
   const question = assessmentQuestions[currentQuestion];
@@ -143,19 +145,22 @@ export default function AssessmentPage() {
               <div className="bg-neutral-50 border border-neutral-200 p-8 text-center">
                 <h2 className="text-2xl font-medium mb-6">下一步</h2>
                 <p className="text-neutral-600 mb-6 leading-relaxed">
-                  请添加我的钉钉进行深入沟通：<br />
-                  <strong className="text-primary">钉钉号：iiu_z896deh8c</strong><br />
-                  <strong className="text-primary">邮箱：mojie_yc@outlook.com</strong><br />
-                  <br />
-                  添加时请发送代码：<strong className="text-accent">mojie101</strong><br />
-                  我会向你发送三封信。
+                  恭喜您通过心理测评！下一步请预约面试。
                 </p>
-                <button
-                  onClick={() => router.push('/')}
-                  className="btn-outline"
-                >
-                  返回首页
-                </button>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <button
+                    onClick={() => setShowInterviewModal(true)}
+                    className="px-10 py-4 bg-accent text-white font-medium hover:bg-accent-light transition-colors"
+                  >
+                    预约面试
+                  </button>
+                  <button
+                    onClick={() => router.push('/')}
+                    className="px-10 py-4 border-2 border-neutral-300 text-neutral-700 font-medium hover:border-neutral-400 transition-colors"
+                  >
+                    返回首页
+                  </button>
+                </div>
               </div>
             )}
 
@@ -172,6 +177,7 @@ export default function AssessmentPage() {
           </div>
         </main>
         <Footer />
+        <InterviewModal isOpen={showInterviewModal} onClose={() => setShowInterviewModal(false)} />
       </>
     );
   }

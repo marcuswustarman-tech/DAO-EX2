@@ -14,6 +14,9 @@ export default function Navbar() {
             <Link href="/about" className="text-sm font-light hover:text-accent transition-colors">
               关于我们
             </Link>
+            <Link href="/training" className="text-sm font-light hover:text-accent transition-colors">
+              培训
+            </Link>
             <Link href="/assessment" className="text-sm font-light hover:text-accent transition-colors">
               开始测评
             </Link>

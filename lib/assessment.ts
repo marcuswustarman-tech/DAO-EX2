@@ -11,7 +11,7 @@ export interface AssessmentQuestion {
 }
 
 export const assessmentQuestions: AssessmentQuestion[] = [
-  // 风险承受力 (6题)
+  // 风险承受力 (4题)
   {
     id: 1,
     dimension: '风险承受力',
@@ -37,17 +37,6 @@ export const assessmentQuestions: AssessmentQuestion[] = [
   {
     id: 3,
     dimension: '风险承受力',
-    question: '面对一次重大亏损（账户回撤15%），您的第一反应是？',
-    options: [
-      { label: '立即停止交易，审视自己的交易系统', score: 100 },
-      { label: '减少仓位，更谨慎地执行策略', score: 80 },
-      { label: '继续交易，相信长期会盈利', score: 50 },
-      { label: '感到恐慌，考虑放弃交易', score: 30 },
-    ],
-  },
-  {
-    id: 4,
-    dimension: '风险承受力',
     question: '您如何看待交易中的亏损？',
     options: [
       { label: '亏损是交易的一部分，关键是控制在可接受范围内', score: 100 },
@@ -57,7 +46,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     ],
   },
   {
-    id: 5,
+    id: 4,
     dimension: '风险承受力',
     question: '如果您的账户在一个月内增长了50%，您会如何处理？',
     options: [
@@ -67,21 +56,10 @@ export const assessmentQuestions: AssessmentQuestion[] = [
       { label: '大幅加仓，抓住这个赚钱的好机会', score: 0, isRedFlag: true },
     ],
   },
-  {
-    id: 6,
-    dimension: '风险承受力',
-    question: '您对杠杆交易的态度是？',
-    options: [
-      { label: '合理使用杠杆，但严格控制在风险承受范围内', score: 100 },
-      { label: '谨慎使用杠杆，只在确定性高的时候使用', score: 80 },
-      { label: '经常使用高杠杆，以提高收益', score: 20 },
-      { label: '使用最大杠杆，快速致富', score: 0, isRedFlag: true },
-    ],
-  },
 
-  // 纪律性 (6题)
+  // 纪律性 (4题)
   {
-    id: 7,
+    id: 5,
     dimension: '纪律性',
     question: '当您制定了交易计划后，实际执行时发现市场情况与预期不符，您会？',
     options: [
@@ -92,7 +70,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     ],
   },
   {
-    id: 8,
+    id: 6,
     dimension: '纪律性',
     question: '您如何看待"移动止损"这一行为？',
     options: [
@@ -103,7 +81,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     ],
   },
   {
-    id: 9,
+    id: 7,
     dimension: '纪律性',
     question: '如果错过了一个您认为的"绝佳入场机会"，您会？',
     options: [
@@ -114,7 +92,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     ],
   },
   {
-    id: 10,
+    id: 8,
     dimension: '纪律性',
     question: '您每天能够严格按照交易计划执行的频率是？',
     options: [
@@ -124,32 +102,10 @@ export const assessmentQuestions: AssessmentQuestion[] = [
       { label: '计划只是参考，实际操作靠盘感', score: 0, isRedFlag: true },
     ],
   },
-  {
-    id: 11,
-    dimension: '纪律性',
-    question: '对于每日交易记录，您的态度是？',
-    options: [
-      { label: '每笔交易都详细记录，定期复盘', score: 100 },
-      { label: '记录重要的交易，定期回顾', score: 70 },
-      { label: '偶尔记录，主要凭记忆', score: 30 },
-      { label: '不需要记录，重要的都记得', score: 0 },
-    ],
-  },
-  {
-    id: 12,
-    dimension: '纪律性',
-    question: '如果您在一天内已经达到了预设的盈利目标，但看到了新的交易机会，您会？',
-    options: [
-      { label: '停止交易，严格遵守当日目标', score: 100 },
-      { label: '仔细评估，如果确实符合规则才会交易', score: 80 },
-      { label: '适度参与，但控制仓位', score: 50 },
-      { label: '继续交易，多赚一点是一点', score: 10 },
-    ],
-  },
 
-  // 情绪稳定性 (6题)
+  // 情绪稳定性 (4题)
   {
-    id: 13,
+    id: 9,
     dimension: '情绪稳定性',
     question: '在经历一次大额盈利后，您的情绪状态是？',
     options: [
@@ -160,7 +116,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     ],
   },
   {
-    id: 14,
+    id: 10,
     dimension: '情绪稳定性',
     question: '如果您在交易时出现连续的小额亏损，您的心态如何？',
     options: [
@@ -171,18 +127,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     ],
   },
   {
-    id: 15,
-    dimension: '情绪稳定性',
-    question: '您在交易时最容易受到什么影响？',
-    options: [
-      { label: '几乎不受外界影响，专注于策略执行', score: 100 },
-      { label: '偶尔会受市场新闻影响，但能自我调节', score: 70 },
-      { label: '经常受到市场情绪和新闻影响', score: 30 },
-      { label: '容易受他人观点和市场情绪左右', score: 10 },
-    ],
-  },
-  {
-    id: 16,
+    id: 11,
     dimension: '情绪稳定性',
     question: '您如何处理交易中的压力？',
     options: [
@@ -193,7 +138,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     ],
   },
   {
-    id: 17,
+    id: 12,
     dimension: '情绪稳定性',
     question: '当市场走势与您的判断完全相反时，您的反应是？',
     options: [
@@ -203,21 +148,10 @@ export const assessmentQuestions: AssessmentQuestion[] = [
       { label: '无法接受，想要立即扳回', score: 0, isRedFlag: true },
     ],
   },
-  {
-    id: 18,
-    dimension: '情绪稳定性',
-    question: '您在亏损后多久能恢复到正常交易状态？',
-    options: [
-      { label: '立即恢复，亏损不影响我的判断', score: 100 },
-      { label: '几分钟到半小时内恢复', score: 80 },
-      { label: '需要几小时到一天时间', score: 50 },
-      { label: '需要几天才能恢复信心', score: 20 },
-    ],
-  },
 
-  // 耐心与专注力 (6题)
+  // 耐心与专注力 (4题)
   {
-    id: 19,
+    id: 13,
     dimension: '耐心与专注力',
     question: '您能够连续盯盘不交易（等待入场信号）的最长时间是？',
     options: [
@@ -228,7 +162,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     ],
   },
   {
-    id: 20,
+    id: 14,
     dimension: '耐心与专注力',
     question: '您如何看待"频繁交易"？',
     options: [
@@ -239,18 +173,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     ],
   },
   {
-    id: 21,
-    dimension: '耐心与专注力',
-    question: '您在交易时段能够保持专注的时间是？',
-    options: [
-      { label: '整个交易时段都能保持高度专注', score: 100 },
-      { label: '大部分时间能专注，偶尔走神', score: 70 },
-      { label: '经常需要休息，难以长时间专注', score: 40 },
-      { label: '很难持续专注，容易分心', score: 10 },
-    ],
-  },
-  {
-    id: 22,
+    id: 15,
     dimension: '耐心与专注力',
     question: '对于等待一个交易机会出现，您的态度是？',
     options: [
@@ -261,18 +184,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     ],
   },
   {
-    id: 23,
-    dimension: '耐心与专注力',
-    question: '您能够每天按照固定时间表进行交易复盘吗？',
-    options: [
-      { label: '每天固定时间复盘，从不缺席', score: 100 },
-      { label: '大部分时候能坚持', score: 70 },
-      { label: '偶尔会跳过复盘', score: 40 },
-      { label: '很少进行系统化复盘', score: 10 },
-    ],
-  },
-  {
-    id: 24,
+    id: 16,
     dimension: '耐心与专注力',
     question: '在独立不被打扰的环境中连续工作8小时，您的感受是？',
     options: [
@@ -283,9 +195,9 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     ],
   },
 
-  // 学习动机 (6题)
+  // 学习动机 (4题)
   {
-    id: 25,
+    id: 17,
     dimension: '学习动机',
     question: '您期望通过交易员培训达到什么目标？',
     options: [
@@ -296,7 +208,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     ],
   },
   {
-    id: 26,
+    id: 18,
     dimension: '学习动机',
     question: '您期望多久能够实现稳定盈利？',
     options: [
@@ -307,18 +219,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     ],
   },
   {
-    id: 27,
-    dimension: '学习动机',
-    question: '您对"30个工作日孵化期"的态度是？',
-    options: [
-      { label: '愿意全身心投入，严格遵守所有规则', score: 100 },
-      { label: '会认真对待，尽力完成', score: 70 },
-      { label: '试试看，不一定能完全做到', score: 30 },
-      { label: '时间太长，希望能加快进度', score: 0 },
-    ],
-  },
-  {
-    id: 28,
+    id: 19,
     dimension: '学习动机',
     question: '如果在培训期间被劝退，您会如何看待？',
     options: [
@@ -329,18 +230,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     ],
   },
   {
-    id: 29,
-    dimension: '学习动机',
-    question: '您如何看待交易中的"运气"成分？',
-    options: [
-      { label: '长期来看，策略和纪律比运气重要得多', score: 100 },
-      { label: '运气有一定作用，但关键还是实力', score: 80 },
-      { label: '运气和实力各占一半', score: 40 },
-      { label: '交易主要靠运气', score: 0, isRedFlag: true },
-    ],
-  },
-  {
-    id: 30,
+    id: 20,
     dimension: '学习动机',
     question: '您对"交易是一门需要终身学习的技艺"这句话的认同程度？',
     options: [

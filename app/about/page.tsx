@@ -1,25 +1,18 @@
 'use client';
 
-import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import RealStarryNightKLine from '@/components/RealStarryNightKLine';
-import StarryNightKLineContour from '@/components/StarryNightKLineContour';
-import StarryNightKLineDensity from '@/components/StarryNightKLineDensity';
+import DataBreathAnimation from '@/components/DataBreathAnimation';
 
 export default function AboutPage() {
-  const [version, setVersion] = useState<'pixelated' | 'contour' | 'density'>('pixelated');
-
   return (
     <>
       <Navbar />
       <main className="min-h-screen pt-24">
-        {/* Hero Section with Starry Night K-Line Background */}
+        {/* Hero Section with Deep Starry Background */}
         <section className="relative overflow-hidden" style={{ height: '70vh' }}>
-          {/* K线星空背景 */}
-          {version === 'pixelated' && <RealStarryNightKLine />}
-          {version === 'contour' && <StarryNightKLineContour />}
-          {version === 'density' && <StarryNightKLineDensity />}
+          {/* 深邃星空背景 */}
+          <DataBreathAnimation />
 
           {/* 内容叠加层 */}
           <div className="relative z-10 h-full flex flex-col items-center justify-center">
@@ -28,43 +21,6 @@ export default function AboutPage() {
               <p className="text-xl md:text-2xl text-white/90 leading-relaxed drop-shadow-md">
                 培养极少数，劝返大多数
               </p>
-
-              {/* 版本切换按钮 */}
-              <div className="mt-12 flex flex-col items-center gap-4">
-                <p className="text-sm text-white/70">点击画面产生涟漪效果 | 切换版本查看不同效果</p>
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => setVersion('pixelated')}
-                    className={`px-6 py-2 text-sm font-medium transition-all ${
-                      version === 'pixelated'
-                        ? 'bg-white text-primary'
-                        : 'bg-white/20 text-white hover:bg-white/30'
-                    }`}
-                  >
-                    真实星空
-                  </button>
-                  <button
-                    onClick={() => setVersion('contour')}
-                    className={`px-6 py-2 text-sm font-medium transition-all ${
-                      version === 'contour'
-                        ? 'bg-white text-primary'
-                        : 'bg-white/20 text-white hover:bg-white/30'
-                    }`}
-                  >
-                    轮廓描边
-                  </button>
-                  <button
-                    onClick={() => setVersion('density')}
-                    className={`px-6 py-2 text-sm font-medium transition-all ${
-                      version === 'density'
-                        ? 'bg-white text-primary'
-                        : 'bg-white/20 text-white hover:bg-white/30'
-                    }`}
-                  >
-                    密度映射
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </section>
