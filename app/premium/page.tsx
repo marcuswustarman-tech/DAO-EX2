@@ -28,7 +28,7 @@ export default function PremiumPage() {
   }
 
   // 检查权限
-  const hasAccess = canAccessPremiumContent(session.user.role as any);
+  const hasAccess = canAccessPremiumContent(session.user.role_status as any);
 
   if (!hasAccess) {
     return (
@@ -40,7 +40,7 @@ export default function PremiumPage() {
               <div className="text-6xl mb-6">🔒</div>
               <h2 className="text-2xl font-medium mb-4">权限不足</h2>
               <p className="text-neutral-400 mb-8">
-                抱歉，您当前的等级为 <span className="text-accent">{session.user.role}</span>，
+                抱歉，您当前的等级为 <span className="text-accent">{session.user.role_status}</span>，
                 需要升级为付费学员才能访问此内容。
               </p>
               <button
@@ -67,7 +67,7 @@ export default function PremiumPage() {
             <div className="text-6xl mb-6">✨</div>
             <h2 className="text-2xl font-medium mb-4">欢迎，{session.user.name}</h2>
             <p className="text-neutral-400 mb-8">
-              您当前的等级：<span className="text-accent">{session.user.role}</span>
+              您当前的等级：<span className="text-accent">{session.user.role_status}</span>
             </p>
 
             <div className="border-t border-neutral-800 pt-8 mt-8">

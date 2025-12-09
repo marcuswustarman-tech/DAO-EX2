@@ -8,7 +8,7 @@ import { isAdmin } from '@/lib/permissions';
 interface User {
   id: string;
   username: string;
-  role: string;
+  role_status: string;
   contact: string | null;
   gender: string | null;
   age: number | null;
@@ -20,7 +20,7 @@ interface User {
 interface UserStat {
   id: string;
   username: string;
-  role: string;
+  role_status: string;
   totalProgress: number;
   completedCourses: number;
   totalCourses: number;
@@ -42,7 +42,7 @@ export default function AdminPage() {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
-    role: '学员',
+    role_status: '学员',
     contact: '',
     gender: '',
     age: '',
@@ -52,13 +52,13 @@ export default function AdminPage() {
   useEffect(() => {
     if (status === 'unauthenticated') {
       router.push('/console');
-    } else if (session?.user && !isAdmin(session.user.role as any)) {
+    } else if (session?.user && !isAdmin(session.user.role_status as any)) {
       router.push('/');
     }
   }, [status, session, router]);
 
   useEffect(() => {
-    if (session?.user && isAdmin(session.user.role as any)) {
+    if (session?.user && isAdmin(session.user.role_status as any)) {
       fetchUsers();
       fetchMonitoring();
     }
@@ -108,7 +108,7 @@ export default function AdminPage() {
         setFormData({
           username: '',
           password: '',
-          role: '学员',
+          role_status: '学员',
           contact: '',
           gender: '',
           age: '',
@@ -134,7 +134,7 @@ export default function AdminPage() {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          role: formData.role,
+          role_status: formData.role_status,
           contact: formData.contact,
           gender: formData.gender,
           age: formData.age ? parseInt(formData.age) : null,
@@ -182,7 +182,7 @@ export default function AdminPage() {
     setFormData({
       username: user.username,
       password: '',
-      role: user.role,
+      role_status: user.role_status,
       contact: user.contact || '',
       gender: user.gender || '',
       age: user.age?.toString() || '',
@@ -198,17 +198,17 @@ export default function AdminPage() {
     );
   }
 
-  if (!session?.user || !isAdmin(session.user.role as any)) {
+  if (!session?.user || !isAdmin(session.user.role_status as any)) {
     return null;
   }
 
   const filteredUsers = filterRole === '全部'
     ? users
-    : users.filter(u => u.role === filterRole);
+    : users.filter(u => u.role_status === filterRole);
 
   const filteredStats = filterRole === '全部'
     ? stats
-    : stats.filter(s => s.role === filterRole);
+    : stats.filter(s => s.role_status === filterRole);
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
@@ -259,7 +259,7 @@ export default function AdminPage() {
                   + 添加学员
                 </button>
                 <div className="flex gap-2">
-                  {['全部', '学员', '付费学员', '交易员', '团队长'].map((role) => (
+                  {['全部', '准学员', '学员', '付费学员', '交易员', '团队长'].map((role) => (
                     <button
                       key={role}
                       onClick={() => setFilterRole(role)}
@@ -294,7 +294,7 @@ export default function AdminPage() {
                         <td className="p-4">{user.username}</td>
                         <td className="p-4">
                           <span className="px-2 py-1 bg-accent/20 text-accent text-sm">
-                            {user.role}
+                            {user.role_status}
                           </span>
                         </td>
                         <td className="p-4 text-neutral-400">{user.contact || '-'}</td>
@@ -335,7 +335,7 @@ export default function AdminPage() {
           {activeTab === 'monitoring' && (
             <div>
               <div className="mb-6 flex gap-2">
-                {['全部', '学员', '付费学员', '交易员', '团队长'].map((role) => (
+                {['全部', '准学员', '学员', '付费学员', '交易员', '团队长'].map((role) => (
                   <button
                     key={role}
                     onClick={() => setFilterRole(role)}
@@ -367,7 +367,7 @@ export default function AdminPage() {
                         <td className="p-4">{stat.username}</td>
                         <td className="p-4">
                           <span className="px-2 py-1 bg-accent/20 text-accent text-sm">
-                            {stat.role}
+                            {stat.role_status}
                           </span>
                         </td>
                         <td className="p-4">
@@ -434,10 +434,11 @@ export default function AdminPage() {
               <div>
                 <label className="block text-sm text-neutral-400 mb-2">等级*</label>
                 <select
-                  value={formData.role}
-                  onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                  value={formData.role_status}
+                  onChange={(e) => setFormData({ ...formData, role_status: e.target.value })}
                   className="w-full px-4 py-2 bg-neutral-950 border border-neutral-700 text-white"
                 >
+                  <option>准学员</option>
                   <option>学员</option>
                   <option>付费学员</option>
                   <option>交易员</option>
@@ -514,10 +515,11 @@ export default function AdminPage() {
               <div>
                 <label className="block text-sm text-neutral-400 mb-2">等级</label>
                 <select
-                  value={formData.role}
-                  onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                  value={formData.role_status}
+                  onChange={(e) => setFormData({ ...formData, role_status: e.target.value })}
                   className="w-full px-4 py-2 bg-neutral-950 border border-neutral-700 text-white"
                 >
+                  <option>准学员</option>
                   <option>学员</option>
                   <option>付费学员</option>
                   <option>交易员</option>

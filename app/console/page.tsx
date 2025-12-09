@@ -1,9 +1,8 @@
 'use client';
 
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession, signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { isAdmin } from '@/lib/permissions';
 
 export default function ConsolePage() {
   const { data: session, status } = useSession();
@@ -28,8 +27,8 @@ export default function ConsolePage() {
       if (result?.error) {
         setError('账号或密码错误');
       } else {
-        // 登录成功，刷新页面
-        window.location.reload();
+        // 登录成功，跳转到Dashboard
+        router.push('/dashboard');
       }
     } catch (err) {
       setError('登录失败，请稍后重试');
@@ -47,52 +46,12 @@ export default function ConsolePage() {
     );
   }
 
-  // 已登录 - 显示个人信息
+  // 已登录 - 重定向到Dashboard
   if (session?.user) {
+    router.push('/dashboard');
     return (
-      <div className="min-h-screen bg-neutral-950 text-white">
-        <div className="container mx-auto px-4 py-20">
-          <div className="max-w-2xl mx-auto">
-            <h1 className="text-4xl font-serif mb-8 text-center">控制台</h1>
-
-            <div className="bg-neutral-900 border border-neutral-800 p-8">
-              <div className="mb-6">
-                <h2 className="text-2xl font-medium mb-4">个人信息</h2>
-                <div className="space-y-3 text-neutral-300">
-                  <div className="flex">
-                    <span className="w-24 text-neutral-500">账号：</span>
-                    <span>{session.user.name}</span>
-                  </div>
-                  <div className="flex">
-                    <span className="w-24 text-neutral-500">等级：</span>
-                    <span className="text-accent">{session.user.role}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* 团队长专属：学员后台控制系统入口 */}
-              {isAdmin(session.user.role as any) && (
-                <div className="mt-8 pt-8 border-t border-neutral-800">
-                  <button
-                    onClick={() => router.push('/admin')}
-                    className="w-full px-6 py-4 bg-accent text-white font-medium hover:bg-accent/90 transition-colors mb-4"
-                  >
-                    进入学员后台控制系统
-                  </button>
-                </div>
-              )}
-
-              <div className="mt-8 pt-8 border-t border-neutral-800">
-                <button
-                  onClick={() => signOut({ callbackUrl: '/' })}
-                  className="w-full px-6 py-3 border border-neutral-700 text-neutral-300 hover:bg-neutral-800 transition-colors"
-                >
-                  退出登录
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="min-h-screen bg-neutral-950 flex items-center justify-center">
+        <div className="text-neutral-400">跳转中...</div>
       </div>
     );
   }

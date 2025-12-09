@@ -12,7 +12,7 @@ export async function PATCH(
 ) {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user || !isAdmin(session.user.role as any)) {
+  if (!session?.user || !isAdmin(session.user.role_status as any)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
   }
 
@@ -20,12 +20,12 @@ export async function PATCH(
 
   try {
     const body = await request.json();
-    const { username, password, role, contact, gender, age, training_start_date, is_active } = body;
+    const { username, password, role_status, contact, gender, age, training_start_date, is_active } = body;
 
     const updateData: any = {};
 
     if (username) updateData.username = username;
-    if (role) updateData.role = role;
+    if (role_status) updateData.role_status = role_status;
     if (contact !== undefined) updateData.contact = contact;
     if (gender !== undefined) updateData.gender = gender;
     if (age !== undefined) updateData.age = age;
@@ -65,7 +65,7 @@ export async function DELETE(
 ) {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user || !isAdmin(session.user.role as any)) {
+  if (!session?.user || !isAdmin(session.user.role_status as any)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
   }
 

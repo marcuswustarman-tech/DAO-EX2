@@ -7,7 +7,7 @@ import { isAdmin } from '@/lib/permissions';
 export async function GET() {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user || !isAdmin(session.user.role as any)) {
+  if (!session?.user || !isAdmin(session.user.role_status as any)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
   }
 
@@ -15,7 +15,7 @@ export async function GET() {
     // 获取所有学员
     const { data: users, error: usersError } = await supabase
       .from('users')
-      .select('id, username, role')
+      .select('id, username, role_status')
       .order('username', { ascending: true });
 
     if (usersError) throw usersError;
@@ -53,7 +53,7 @@ export async function GET() {
       return {
         id: user.id,
         username: user.username,
-        role: user.role,
+        role_status: user.role_status,
         totalProgress: overallProgress,
         completedCourses: completedCount,
         totalCourses,

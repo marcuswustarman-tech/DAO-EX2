@@ -9,14 +9,14 @@ import { isAdmin } from '@/lib/permissions';
 export async function GET() {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user || !isAdmin(session.user.role as any)) {
+  if (!session?.user || !isAdmin(session.user.role_status as any)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
   }
 
   try {
     const { data: users, error } = await supabase
       .from('users')
-      .select('id, username, role, contact, gender, age, training_start_date, created_at, is_active')
+      .select('id, username, role_status, contact, gender, age, training_start_date, created_at, is_active')
       .order('created_at', { ascending: false });
 
     if (error) throw error;
@@ -32,16 +32,16 @@ export async function GET() {
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user || !isAdmin(session.user.role as any)) {
+  if (!session?.user || !isAdmin(session.user.role_status as any)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
   }
 
   try {
     const body = await request.json();
-    const { username, password, role, contact, gender, age, training_start_date } = body;
+    const { username, password, role_status, contact, gender, age, training_start_date } = body;
 
     // 验证必填字段
-    if (!username || !password || !role) {
+    if (!username || !password || !role_status) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
@@ -54,7 +54,7 @@ export async function POST(request: Request) {
       .insert({
         username,
         password_hash,
-        role,
+        role_status,
         contact,
         gender,
         age,

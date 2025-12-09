@@ -75,7 +75,7 @@ export default function HomePage() {
                   <Link href="/training" className="px-10 py-4 bg-white text-primary font-medium hover:bg-neutral-100 transition-colors">
                     了解外汇培训
                   </Link>
-                  <Link href="/assessment" className="px-10 py-4 border-2 border-white text-white font-medium hover:bg-white hover:text-primary transition-colors">
+                  <Link href="/auth" className="px-10 py-4 border-2 border-white text-white font-medium hover:bg-white hover:text-primary transition-colors">
                     进入交易系统
                   </Link>
                 </div>
