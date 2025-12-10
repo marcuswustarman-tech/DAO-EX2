@@ -94,6 +94,122 @@ export default function DashboardPage() {
     );
   }
 
+  // 准学员Dashboard
+  if (dashboardData.type === 'prospective_student') {
+    const { interviewApplication } = dashboardData;
+
+    return (
+      <div className="min-h-screen bg-neutral-950">
+        <AppNavbar />
+        <div className="min-h-screen bg-neutral-950 text-white">
+          <div className="container mx-auto px-4 py-8">
+            <div className="max-w-4xl mx-auto">
+              {/* 返回按钮 */}
+              <div className="mb-6">
+                <button
+                  onClick={() => router.push('/console')}
+                  className="text-neutral-400 hover:text-white transition-colors"
+                >
+                  ← 返回控制台
+                </button>
+              </div>
+
+              {/* 欢迎区域 */}
+              <div className="mb-8">
+                <h1 className="text-3xl font-serif mb-2">
+                  👋 欢迎，{session.user.name}
+                </h1>
+                <p className="text-neutral-400 text-lg">
+                  当前状态：<span className="text-accent font-medium">准学员</span>
+                </p>
+              </div>
+
+              {/* 主要行动号召 */}
+              <div className="bg-gradient-to-br from-neutral-900 to-neutral-800 border-2 border-accent/30 p-8 mb-8 rounded-lg shadow-2xl">
+                <div className="flex items-center gap-2 mb-6">
+                  <span className="text-3xl">🎯</span>
+                  <h2 className="text-2xl font-bold">下一步：申请面试</h2>
+                </div>
+                <p className="text-neutral-300 text-lg mb-6">
+                  完成面试申请，开启您的交易员之路
+                </p>
+                {!interviewApplication ? (
+                  <Link
+                    href="/interview/apply"
+                    className="inline-block px-8 py-4 bg-accent text-black font-bold text-lg hover:bg-accent/90 transition-all transform hover:scale-105 rounded-lg shadow-lg"
+                  >
+                    立即申请面试 →
+                  </Link>
+                ) : (
+                  <div className="bg-neutral-950 border border-neutral-700 p-6 rounded-lg">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="text-2xl">
+                        {interviewApplication.result === '待定' ? '⏳' :
+                         interviewApplication.result === '通过' ? '✅' : '❌'}
+                      </span>
+                      <div>
+                        <div className="font-bold text-lg">
+                          面试申请状态：
+                          <span className={`ml-2 ${
+                            interviewApplication.result === '待定' ? 'text-yellow-400' :
+                            interviewApplication.result === '通过' ? 'text-green-400' : 'text-red-400'
+                          }`}>
+                            {interviewApplication.result}
+                          </span>
+                        </div>
+                        <div className="text-sm text-neutral-400 mt-1">
+                          申请时间：{new Date(interviewApplication.created_at).toLocaleDateString('zh-CN')}
+                        </div>
+                      </div>
+                    </div>
+                    {interviewApplication.result === '待定' && (
+                      <p className="text-neutral-400">
+                        您的面试申请正在审核中，请耐心等待团队长的回复。
+                      </p>
+                    )}
+                    {interviewApplication.result === '通过' && (
+                      <p className="text-green-400">
+                        恭喜！您的面试申请已通过，团队长将很快与您联系安排面试时间。
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* 了解更多 */}
+              <div className="bg-neutral-900 border border-neutral-800 p-6 rounded-lg">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <span>📚</span>
+                  了解更多
+                </h3>
+                <div className="space-y-3">
+                  <Link href="/mojie101" className="block p-4 bg-neutral-950 hover:bg-neutral-800 border border-neutral-700 rounded transition-colors">
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium">查看招聘流程（三封信）</span>
+                      <span className="text-accent">查看 →</span>
+                    </div>
+                  </Link>
+                  <Link href="/#faq" className="block p-4 bg-neutral-950 hover:bg-neutral-800 border border-neutral-700 rounded transition-colors">
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium">常见问题解答</span>
+                      <span className="text-accent">查看 →</span>
+                    </div>
+                  </Link>
+                  <Link href="/#contact" className="block p-4 bg-neutral-950 hover:bg-neutral-800 border border-neutral-700 rounded transition-colors">
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium">联系我们</span>
+                      <span className="text-accent">查看 →</span>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // 学员Dashboard
   if (dashboardData.type === 'student') {
     const { progress, currentStage, pendingAssignments, recentReviews, stats } = dashboardData;

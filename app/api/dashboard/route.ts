@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { supabase } from '@/lib/supabase';
-import { isActiveStudent, isTeamLeader } from '@/lib/permissions';
+import { isActiveStudent, isTeamLeader, canApplyInterview } from '@/lib/permissions';
 
 export const dynamic = 'force-dynamic';
 
@@ -122,6 +122,28 @@ async function getStudentDashboard(userId: string) {
   }
 }
 
+// 准学员Dashboard数据
+async function getProspectiveStudentDashboard(userId: string) {
+  try {
+    // 获取面试申请状态
+    const { data: interviewApplication } = await supabase
+      .from('interview_applications')
+      .select('*')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single();
+
+    return NextResponse.json({
+      type: 'prospective_student',
+      interviewApplication: interviewApplication || null
+    });
+  } catch (error) {
+    console.error('Error fetching prospective student dashboard:', error);
+    return NextResponse.json({ error: '获取数据失败' }, { status: 500 });
+  }
+}
+
 // 团队长Dashboard数据
 async function getTeamLeaderDashboard() {
   try {
@@ -209,6 +231,11 @@ export async function GET() {
   // 学员Dashboard
   if (isActiveStudent(roleStatus)) {
     return getStudentDashboard(session.user.id);
+  }
+
+  // 准学员Dashboard
+  if (canApplyInterview(roleStatus)) {
+    return getProspectiveStudentDashboard(session.user.id);
   }
 
   return NextResponse.json({ error: 'No dashboard available for your role' }, { status: 403 });
