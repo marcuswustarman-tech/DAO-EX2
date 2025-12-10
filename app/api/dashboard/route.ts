@@ -4,6 +4,8 @@ import { authOptions } from '@/lib/auth';
 import { supabase } from '@/lib/supabase';
 import { isActiveStudent, isTeamLeader } from '@/lib/permissions';
 
+export const dynamic = 'force-dynamic';
+
 // 学员Dashboard数据
 async function getStudentDashboard(userId: string) {
   try {
