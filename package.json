@@ -9,14 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@azure/msal-node": "^3.8.4",
+    "@microsoft/microsoft-graph-client": "^3.0.7",
     "@react-three/drei": "^9.95.0",
     "@react-three/fiber": "^8.15.0",
     "@supabase/supabase-js": "^2.86.0",
     "@vercel/postgres": "^0.10.0",
     "bcryptjs": "^3.0.3",
+    "dotenv": "^17.2.3",
     "framer-motion": "^11.0.0",
+    "imap": "^0.8.19",
+    "isomorphic-fetch": "^3.0.0",
+    "mailparser": "^3.9.0",
     "next": "^14.2.0",
     "next-auth": "^4.24.0",
+    "nodemailer": "^7.0.11",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "three": "^0.160.0"
@@ -24,6 +31,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
+    "@types/nodemailer": "^7.0.4",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/three": "^0.160.0",
