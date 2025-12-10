@@ -221,7 +221,13 @@ export async function GET() {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const roleStatus = session.user.role_status as any;
+  // 如果role_status未定义，默认为准学员
+  let roleStatus = session.user.role_status as any;
+  if (!roleStatus || roleStatus === 'undefined') {
+    roleStatus = '准学员';
+    console.log('Dashboard API - role_status was undefined, defaulting to 准学员');
+  }
+
   console.log('Dashboard API - User role_status:', roleStatus);
   console.log('Dashboard API - User ID:', session.user.id);
   console.log('Dashboard API - isTeamLeader:', isTeamLeader(roleStatus));
