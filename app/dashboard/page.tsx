@@ -117,96 +117,170 @@ export default function DashboardPage() {
               {/* 欢迎区域 */}
               <div className="mb-8">
                 <h1 className="text-3xl font-serif mb-2">
-                  欢迎回来，{session.user.name}
+                  👋 欢迎回来，{session.user.name}
                 </h1>
-                <p className="text-neutral-400">
-                  当前等级：<span className="text-accent">{session.user.role_status}</span> ·
-                  学习进度：<span className="text-accent">{progress.percentage}%</span>
+                <p className="text-neutral-400 text-lg">
+                  <span className="text-accent font-medium">{session.user.role_status}</span> ·
+                  学习进度 <span className="text-accent font-medium">{progress.percentage}%</span> ·
+                  学习天数 <span className="text-accent font-medium">{stats.learningDays}</span>天
                 </p>
               </div>
 
-              {/* 学习进度卡片 */}
-              <div className="bg-neutral-900 border border-neutral-800 p-6 mb-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-xl font-medium">学习进度</h2>
-                  <Link href="/learning" className="text-sm text-accent hover:text-accent/80">
-                    查看详情 →
-                  </Link>
+              {/* 🎯 当前学习阶段 - 最重要的卡片 */}
+              <div className="bg-gradient-to-br from-neutral-900 to-neutral-800 border-2 border-accent/30 p-8 mb-8 rounded-lg shadow-2xl">
+                <div className="flex items-center gap-2 mb-6">
+                  <span className="text-3xl">🎯</span>
+                  <h2 className="text-2xl font-bold">当前学习阶段</h2>
                 </div>
-                <ProgressBar
-                  current={progress.completed}
-                  total={progress.total}
-                  showLabel={true}
-                  size="lg"
-                />
-                <div className="mt-4 flex items-center gap-8 text-sm text-neutral-400">
+                {currentStage ? (
                   <div>
-                    <span className="text-2xl font-bold text-white">{progress.completed}</span>
-                    <span className="ml-1">/ {progress.total} 阶段已完成</span>
+                    <div className="mb-6">
+                      <div className="text-sm text-neutral-400 mb-2">
+                        阶段 {currentStage.stage_number}
+                      </div>
+                      <div className="text-3xl font-bold mb-3 text-accent">{currentStage.stage_name}</div>
+                      <p className="text-neutral-300 text-lg mb-4">{currentStage.description}</p>
+                      {currentStage.progress && (
+                        <div className="mb-4">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-sm text-neutral-400">进度</span>
+                            <span className="text-accent font-medium">{currentStage.progress.progress || 0}%</span>
+                          </div>
+                          <div className="w-full h-3 bg-neutral-950 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-accent transition-all duration-500"
+                              style={{ width: `${currentStage.progress.progress || 0}%` }}
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex gap-4">
+                      <Link
+                        href="/learning"
+                        className="flex-1 px-8 py-4 bg-accent text-black font-bold text-lg hover:bg-accent/90 transition-all transform hover:scale-105 text-center rounded-lg shadow-lg"
+                      >
+                        继续学习 →
+                      </Link>
+                      {currentStage.progress?.status === '进行中' && (
+                        <Link
+                          href={`/learning/submit?stage=${currentStage.id}`}
+                          className="px-8 py-4 border-2 border-accent text-accent font-bold text-lg hover:bg-accent/10 transition-all text-center rounded-lg"
+                        >
+                          提交作业
+                        </Link>
+                      )}
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="text-center py-8">
+                    <p className="text-neutral-400 text-lg mb-4">暂无进行中的阶段</p>
+                    <Link
+                      href="/learning"
+                      className="inline-block px-8 py-4 bg-accent text-black font-bold text-lg hover:bg-accent/90 transition-all"
+                    >
+                      查看所有阶段
+                    </Link>
+                  </div>
+                )}
               </div>
 
               {/* 主要内容区 */}
               <div className="grid md:grid-cols-2 gap-6 mb-6">
-                {/* 当前学习阶段 */}
-                <div className="bg-neutral-900 border border-neutral-800 p-6">
-                  <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
-                    <span className="text-accent">📚</span>
-                    当前学习阶段
+                {/* 📚 学习材料 */}
+                <div className="bg-neutral-900 border border-neutral-800 p-6 rounded-lg">
+                  <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+                    <span>📚</span>
+                    学习材料
                   </h3>
-                  {currentStage ? (
-                    <div>
-                      <div className="text-sm text-neutral-500 mb-1">
-                        阶段 {currentStage.stage_number}
+
+                  {/* 培训会议室信息 - 突出显示 */}
+                  {currentStage && (
+                    <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border-2 border-blue-500/50 p-5 rounded-lg mb-6">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-2xl">🏠</span>
+                        <h4 className="text-lg font-bold text-blue-300">培训会议室</h4>
                       </div>
-                      <div className="text-xl font-medium mb-2">{currentStage.stage_name}</div>
-                      <p className="text-sm text-neutral-400 mb-4">{currentStage.description}</p>
-                      <div className="flex gap-3">
-                        <Link
-                          href="/learning"
-                          className="px-4 py-2 bg-accent text-white hover:bg-accent/90 transition-colors text-sm"
-                        >
-                          继续学习
-                        </Link>
-                        {currentStage.progress?.status === '进行中' && (
-                          <Link
-                            href={`/learning/submit?stage=${currentStage.id}`}
-                            className="px-4 py-2 border border-neutral-700 text-neutral-300 hover:bg-neutral-800 transition-colors text-sm"
-                          >
-                            提交作业
-                          </Link>
-                        )}
+                      <div className="space-y-2 text-sm">
+                        <div className="flex items-center justify-between">
+                          <span className="text-neutral-400">房间名称：</span>
+                          <span className="text-white font-mono bg-neutral-950 px-3 py-1 rounded">Trading-Room-{currentStage.stage_number}</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-neutral-400">密码：</span>
+                          <span className="text-white font-mono bg-neutral-950 px-3 py-1 rounded">****</span>
+                        </div>
+                        <button className="w-full mt-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded transition-colors">
+                          显示密码
+                        </button>
                       </div>
                     </div>
-                  ) : (
-                    <p className="text-neutral-500">暂无进行中的阶段</p>
                   )}
+
+                  {/* 其他学习材料 */}
+                  <div className="space-y-3">
+                    <Link href="/learning" className="block p-4 bg-neutral-950 hover:bg-neutral-800 border border-neutral-700 rounded transition-colors">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <span className="text-xl">📹</span>
+                          <span className="font-medium">视频教程</span>
+                        </div>
+                        <span className="text-accent">查看 →</span>
+                      </div>
+                    </Link>
+                    <Link href="/learning" className="block p-4 bg-neutral-950 hover:bg-neutral-800 border border-neutral-700 rounded transition-colors">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <span className="text-xl">📄</span>
+                          <span className="font-medium">学习文档</span>
+                        </div>
+                        <span className="text-accent">查看 →</span>
+                      </div>
+                    </Link>
+                    <Link href="/learning" className="block p-4 bg-neutral-950 hover:bg-neutral-800 border border-neutral-700 rounded transition-colors">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <span className="text-xl">📝</span>
+                          <span className="font-medium">练习题</span>
+                        </div>
+                        <span className="text-accent">查看 →</span>
+                      </div>
+                    </Link>
+                  </div>
                 </div>
 
-                {/* 待提交作业 */}
-                <div className="bg-neutral-900 border border-neutral-800 p-6">
-                  <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
-                    <span className="text-yellow-500">📝</span>
-                    待提交作业
+                {/* 📝 待办事项 */}
+                <div className="bg-neutral-900 border border-neutral-800 p-6 rounded-lg">
+                  <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+                    <span>📝</span>
+                    待办事项
                   </h3>
                   {pendingAssignments.length > 0 ? (
                     <div className="space-y-3">
                       {pendingAssignments.map((stage: any) => (
-                        <div key={stage.id} className="p-3 bg-neutral-950 border border-neutral-700">
-                          <div className="font-medium mb-1">{stage.stage_name}</div>
-                          <div className="text-sm text-neutral-400 mb-3">请完成本阶段作业</div>
-                          <Link
-                            href={`/learning/submit?stage=${stage.id}`}
-                            className="inline-block px-3 py-1 bg-accent text-white hover:bg-accent/90 text-sm"
-                          >
-                            立即提交
-                          </Link>
+                        <div key={stage.id} className="p-4 bg-orange-900/20 border-2 border-orange-500/50 rounded-lg">
+                          <div className="flex items-start gap-3">
+                            <span className="text-2xl">⚠️</span>
+                            <div className="flex-1">
+                              <div className="font-bold text-orange-300 mb-1">{stage.stage_name}</div>
+                              <div className="text-sm text-neutral-300 mb-3">请完成本阶段作业</div>
+                              <Link
+                                href={`/learning/submit?stage=${stage.id}`}
+                                className="inline-block px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white font-medium text-sm rounded transition-colors"
+                              >
+                                立即提交 →
+                              </Link>
+                            </div>
+                          </div>
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <p className="text-neutral-500">暂无待提交作业</p>
+                    <div className="text-center py-8">
+                      <span className="text-5xl mb-3 block">✅</span>
+                      <p className="text-neutral-400">暂无待办事项</p>
+                      <p className="text-sm text-neutral-500 mt-2">继续保持！</p>
+                    </div>
                   )}
                 </div>
               </div>
@@ -214,42 +288,44 @@ export default function DashboardPage() {
               {/* 底部区域 */}
               <div className="grid md:grid-cols-3 gap-6">
                 {/* 我的统计 */}
-                <div className="bg-neutral-900 border border-neutral-800 p-6">
-                  <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
+                <div className="bg-neutral-900 border border-neutral-800 p-6 rounded-lg">
+                  <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
                     <span>📊</span>
                     我的统计
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     <div>
-                      <div className="text-3xl font-bold text-accent">{stats.learningDays}</div>
-                      <div className="text-sm text-neutral-500">学习天数</div>
+                      <div className="text-4xl font-bold text-accent mb-2">{stats.learningDays}</div>
+                      <div className="text-sm text-neutral-400">学习天数</div>
                     </div>
                     <div>
-                      <div className="text-3xl font-bold text-green-400">{stats.completedAssignments}</div>
-                      <div className="text-sm text-neutral-500">完成作业</div>
+                      <div className="text-4xl font-bold text-green-400 mb-2">{stats.completedAssignments}</div>
+                      <div className="text-sm text-neutral-400">完成作业</div>
                     </div>
                   </div>
                 </div>
 
                 {/* 最新通知 */}
-                <div className="md:col-span-2 bg-neutral-900 border border-neutral-800 p-6">
-                  <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
+                <div className="md:col-span-2 bg-neutral-900 border border-neutral-800 p-6 rounded-lg">
+                  <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
                     <span>📨</span>
                     最新通知
                   </h3>
                   {recentReviews.length > 0 ? (
                     <div className="space-y-3">
                       {recentReviews.map((review: any) => (
-                        <div key={review.id} className="flex items-start gap-3 p-3 bg-neutral-950 border border-neutral-700">
-                          <div className={`mt-1 w-2 h-2 rounded-full flex-shrink-0 ${
+                        <div key={review.id} className="flex items-start gap-3 p-4 bg-neutral-950 border border-neutral-700 rounded-lg hover:border-neutral-600 transition-colors">
+                          <div className={`mt-1 w-3 h-3 rounded-full flex-shrink-0 ${
                             review.status === '已通过' ? 'bg-green-400' : 'bg-red-400'
                           }`} />
                           <div className="flex-1 min-w-0">
-                            <div className="text-sm font-medium">
+                            <div className="font-medium mb-1">
                               {review.stage.stage_name} 作业审核
-                              {review.status === '已通过' ? '已通过' : '需要修改'}
+                              <span className={`ml-2 ${review.status === '已通过' ? 'text-green-400' : 'text-red-400'}`}>
+                                {review.status === '已通过' ? '✅ 已通过' : '❌ 需要修改'}
+                              </span>
                             </div>
-                            <div className="text-xs text-neutral-500">
+                            <div className="text-sm text-neutral-500">
                               {new Date(review.submitted_at).toLocaleDateString('zh-CN')}
                             </div>
                           </div>
@@ -257,7 +333,10 @@ export default function DashboardPage() {
                       ))}
                     </div>
                   ) : (
-                    <p className="text-neutral-500">暂无通知</p>
+                    <div className="text-center py-8">
+                      <span className="text-4xl mb-3 block">📭</span>
+                      <p className="text-neutral-400">暂无通知</p>
+                    </div>
                   )}
                 </div>
               </div>
