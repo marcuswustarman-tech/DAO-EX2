@@ -100,6 +100,14 @@ export default function ProgressPage() {
     <div className="min-h-screen bg-neutral-950 text-white">
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto">
+          <div className="mb-6">
+            <button
+              onClick={() => router.push('/console')}
+              className="text-neutral-400 hover:text-white transition-colors"
+            >
+              ← 返回控制台
+            </button>
+          </div>
           <h1 className="text-4xl font-serif mb-8 text-center">我的学习进度</h1>
 
           {/* 总体进度 */}

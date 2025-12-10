@@ -1,222 +1,112 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 export default function MoJie101Page() {
+  const router = useRouter();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       <div className="max-w-5xl mx-auto px-6 py-16">
+        <div className="mb-6">
+          <button
+            onClick={() => router.push('/')}
+            className="text-slate-600 hover:text-slate-800 transition-colors"
+          >
+            ← 返回首页
+          </button>
+        </div>
+
         <h1 className="text-5xl font-bold text-center mb-4 text-slate-800">三封信</h1>
         <p className="text-center text-slate-600 mb-16 text-lg">Three Letters</p>
 
-        {/* 第一封信 */}
+        {/* 筛选 */}
+        <div className="bg-white rounded-2xl shadow-xl p-12 mb-12 border border-slate-200">
+          <h2 className="text-3xl font-bold mb-8 text-slate-800 border-b-2 border-slate-200 pb-4">筛选</h2>
+          <div className="prose prose-lg max-w-none text-slate-700 leading-relaxed space-y-6">
+            <p>一部分人有这样的特性：他们急躁，不知道自己想要什么，看问题只浮于表面，无法看透事物的本质，或者压根不适合做交易员这个工作，适合做那些"稳定"的"当一天和尚敲一天钟"的工作。</p>
+
+            <p>关于收入，社保，底薪，薪资结构，等问题，我在这里再次阐述：首先应该明白一个概念：任何盈利组织企业一定不会做亏本的事情（至少他们认为的）就算是高薪招一个什么都不会的应届生也是因为政府的补贴以及此应届生已经足够优秀证明了自己的能力，公司能看到他未来可能产生的价值。</p>
+
+            <p>所以你通过工作得到的收入一定是小于你创造的价值的，而我们这是一个极简行业，创造的所有价值都来源于在二级市场通过买卖差价来实现。</p>
+
+            <p>在你证明自己有盈利能力（通过考核）前，我们绝对不会投入任何金钱（当然，时间精力也只会投向看起来更有希望的候选人）如果想拿着过去的成就扔我脸上往这里一坐，伸出手来：给钱。抱歉，这你不适合你，可以去试试传统的大公司，他们也许认可这些东西。</p>
+
+            <p>关于通过考核后的收入，薪资结构，社保等，问题。其实你明白，在你证明自己有生产力之前是没必要问这些问题的，你只需明白一点，你的实际收入一定不会超过你在战场（二级市场）上缴获的物资。问这个问题只不过是担心我们跑路，请问：你已经是一名能稳定带回战果的士兵了，我们会跑路吗，央行会扔掉他们的印钞机吗？</p>
+
+            <p>说回这些问题，这些问题我能回答吗，当然能，答案也很简单，但我依然不会回答这个问题。</p>
+
+            <p>而这也是筛选的一环，如果你多疑看问题只看表面，上面这段话看不懂，那么你其实不适合做这一行，360行都可出状元，天生你材必有他用。</p>
+          </div>
+        </div>
+
+        {/* 第一面 */}
         <div className="bg-white rounded-2xl shadow-xl p-12 mb-12 border border-slate-200">
           <h2 className="text-3xl font-bold mb-8 text-slate-800 border-b-2 border-slate-200 pb-4">第一面</h2>
           <div className="prose prose-lg max-w-none text-slate-700 leading-relaxed space-y-6">
-            <p className="text-xl font-semibold mb-6">亲爱的候选人：</p>
+            <p>1.首先我们的行业性质不属于业务、市场范畴，如果你本人性格特别外向、过于跳跃、不擅长遵守纪律、没有严格执行力可能并不适合本职位。</p>
 
-            <p>欢迎来到明道交易的招聘流程。我们很高兴您对加入我们团队表现出兴趣。</p>
+            <p>2.区域性小团队化办公或远程办公作业是我们的行业特性。需要严格筛选及一定周期的培训、考核，并最终自主选择薪金模式。如果你对该行业不太了解，建议你多查询相关资料后再进一步沟通（对行业不太了解可以去百度搜索"伯克希尔有多少员工"之类信息熟悉）。</p>
 
-            <p>明道交易是一家专注于金融市场交易和投资的专业机构。我们致力于为客户提供卓越的交易策略和风险管理服务。我们的团队由经验丰富的交易员、分析师和技术专家组成，共同追求卓越的投资回报。</p>
+            <p>3.还是由于行业特性的原因，毫不夸张地说我们是在做常年千、万里挑一的工作。由于区域范围广泛以及个体差异，我们将采用：弹性工作机制、差异性业绩薪金考核方式/标准等要求，你可以自主选择是否接受。</p>
 
-            <p className="font-semibold mt-8 mb-4">我们寻找的人才特质：</p>
-            <ul className="list-disc pl-6 space-y-3">
-              <li>对金融市场充满热情，具有强烈的学习欲望</li>
-              <li>具备出色的分析能力和逻辑思维</li>
-              <li>能够在压力下保持冷静，做出理性决策</li>
-              <li>具有团队合作精神，同时能够独立工作</li>
-              <li>对数据敏感，善于发现市场机会</li>
-            </ul>
+            <p>4.无论在沟通、面试、培训、工作中，都绝不允许任何一方出现"索要资金"、"变相入金"、"要求拉业务""拉资金、融资/变相融资"等任何违法违规的行为……所有职位一切仅限于技术、数据、管理等范畴，一旦出现该情况，请第一时间告知。</p>
 
-            <p className="mt-8">我们的招聘流程包括多个阶段，旨在全面评估候选人的能力和潜力。每个阶段都是为了确保我们找到最适合的人才，同时也让您更好地了解我们的公司文化和工作环境。</p>
+            <p>5.回答典型问题：有人问一些为什么我们要求"交易员"年龄（认为年轻人"不牢靠"、"没经验"），在多数国人的眼中[甚至不乏众多金融从业者]很多都认为，有过很多年交易经验或曾在银行、券商、公私募…等金融机构工作过的才是所谓的"专家"，才会交易、能赚钱，才有资格做交易员（操盘手）。请你千万不要这样理解，更不要用"老中医才是高手""老会计才专业""老管理人才有水平"这种行业思维死搬硬套…因为这是大错特错、完全误解的。（事实上这些在其他行业似乎正确的规律，起码在本行业完全不适用！国内90%的"年龄大、经验广的"老油条"根本上是交易的失败者（很多坏习惯）或上不去下不来的"江湖游魂（掩耳盗铃/到处募资…）"，这一点，他们自己心里最明白，原谅我找不到更贴切的方式形容）。真正答案是：这个行业（职业）是真正属于18-30岁的"适合"的年轻人。</p>
 
-            <p className="font-semibold mt-8">招聘流程概述：</p>
-            <ol className="list-decimal pl-6 space-y-3">
-              <li>初步筛选：审核简历和基本资格</li>
-              <li>在线评估：测试基础知识和技能</li>
-              <li>第一轮面试：与HR团队进行初步交流</li>
-              <li>技术面试：评估专业能力和技术水平</li>
-              <li>最终面试：与高级管理层会面</li>
-              <li>背景调查：核实工作经历和资质</li>
-              <li>录用决定：发放offer并商讨入职事宜</li>
-            </ol>
+            <p>6、为了不浪费彼此的时间，我们会用最短的时间（5~20个工作日），筛选/训练"适合的年轻人"达到他们（所谓专家）10-20年的"盈利能力"，并科学规避他们身上不应该有的错误定式思维、复杂糟粕及恶习），这一点也不奇怪，"一张白纸最好画"难道不是吗？目前职业交易员的职业化训练在国内一直（近30年）是相对荒芜的。那些所谓的年龄经验丰富者，多数是自学一招半式或夹杂自创的"土办法"、"障眼法"。而我们这里是交易员的"黄埔军校"</p>
 
-            <p className="mt-8">整个流程通常需要2-4周时间。我们会在每个阶段结束后及时与您沟通进展情况。</p>
+            <p>总之，如果适合做 Trader（这个职业）入行越年轻越好！【我们的原则是，在最短的周期（5-20 个交易日培训后）判别该年轻人是否适合该行业，认为不适合者会忠告其终身不要再踏足这个行业】，毕竟"赌徒（比喻）"只适合极少数人。</p>
 
-            <p className="mt-8 font-semibold">下一步行动：</p>
-            <p>请仔细阅读接下来的两封信，它们将为您提供更详细的信息和指导。如果您准备好继续这个过程，请按照第二封信中的说明进行操作。</p>
+            <p>——相信多数人还有类似更多问题，要通过时间慢慢了解、理解（奉劝所有的年轻人不要着急，心态放平（给自己一次机会试试就好，发现不适合自己的不要执着，即刻离开，天生你才必有他用！）。另外，特别在此重申仔细看上面第 4条，无论你到任何公司，不要入金、不要融资、不要参与拉业务…以规避不良平台。</p>
 
-            <p className="mt-12 text-right">
-              <span className="block">明道交易招聘团队</span>
-              <span className="block text-slate-600">{new Date().getFullYear()}年</span>
-            </p>
+            <p>最后，统一说明一下很多人关心的工作内容问题，一切的工作只有一件事——Trading（交易，并取得利润）。简单说就两个动作，把钱推进去，之后把钱拿出来。——既没有传统行业的进存销，也没有原材料、加工、推广…环节，更没有传统所谓的天花板和边际…以及工商税务等行政环节。是一个极简行业，极简意味着极纯粹意味着容不得半句谎言（包括对自己）。唯一要做的就是让自己成为优秀的Trader</p>
           </div>
         </div>
 
-        {/* 第二封信 */}
-        <div className="bg-white rounded-2xl shadow-xl p-12 mb-12 border border-slate-200">
+        {/* 第二面 */}
+        <div className="bg-white rounded-2xl shadow-xl p-12 border border-slate-200">
           <h2 className="text-3xl font-bold mb-8 text-slate-800 border-b-2 border-slate-200 pb-4">第二面</h2>
           <div className="prose prose-lg max-w-none text-slate-700 leading-relaxed space-y-6">
-            <p className="text-xl font-semibold mb-6">关于面试准备的重要信息：</p>
+            <p>1、好的开始：你因为好奇心，和不怕被骗的勇气，从其他渠道了解到我们后，你加了微信。于是你穿过滤网到了这里，在今后的职业生涯中这样的滤网还有很多。保持你的好奇心+勇气，这二者催生出运气，这是成功的钥匙之一。</p>
 
-            <p>恭喜您通过了初步筛选！现在，我们想为您提供一些关于如何准备面试的建议和指导。</p>
+            <p>2、重新详述一下这个职业（交易员）：</p>
 
-            <p className="font-semibold mt-8 mb-4">面试准备清单：</p>
+            <p>这个职业在本质上是简单明了的的，是一个黑白分明、胜负分明、成败分明的领域，它不容模糊。简而言之，想象一下你被派往战场，通过击败敌人并从他们身上夺取徽章（或臂章）来赚取奖金（金钱）。当然，如果你在战场上缺乏良好的技能和纪律，你也可能会被击败。这听起来很像雇佣兵的工作方式：根据你的努力获得相应的报酬。</p>
 
-            <div className="bg-slate-50 p-6 rounded-lg mb-6">
-              <h3 className="font-bold text-lg mb-4">1. 了解公司</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>研究明道交易的历史、使命和价值观</li>
-                <li>了解我们的主要业务领域和服务</li>
-                <li>关注我们最近的新闻和市场动态</li>
-                <li>熟悉我们的竞争对手和行业地位</li>
-              </ul>
-            </div>
+            <p>现在你应该明确些了，实际上，你的所有收入都源自于你个人所创造的生产力，即亲自播种、施肥和收获的成果，而不是那些模糊不清、需要团队合作且难以明确各自贡献的工作。因此，你不必担心与他人争论功劳大小或分配收益的问题。</p>
 
-            <div className="bg-slate-50 p-6 rounded-lg mb-6">
-              <h3 className="font-bold text-lg mb-4">2. 技术准备</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>复习金融市场基础知识</li>
-                <li>准备讨论您的交易策略和投资理念</li>
-                <li>熟悉常用的技术分析工具和指标</li>
-                <li>准备案例分析和问题解决的例子</li>
-              </ul>
-            </div>
+            <p>然而，你必须将每天（或每周、每月）将通过生产力创造剩余价值中的一部分，分配给你的上级——比如团队长或基金经理。这种做法与资本的运作方式相符：他们通过辛勤训练和指导你，目的是为了能够"分享"（或者按照某些观点，可以说是"榨取"）你的剩余价值。</p>
 
-            <div className="bg-slate-50 p-6 rounded-lg mb-6">
-              <h3 className="font-bold text-lg mb-4">3. 行为面试准备</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>准备STAR方法（情境、任务、行动、结果）的回答</li>
-                <li>思考您过去的成功案例和挑战</li>
-                <li>准备讨论您的职业目标和发展规划</li>
-                <li>思考为什么想加入明道交易</li>
-              </ul>
-            </div>
+            <p>当然，上述内容在所有行业中均是适用的，只不过这个过程在其他行业中被有意无意的巧妙隐藏了，而这个行业的核心是诚实，所以这个过程在这里显得过于露骨。</p>
 
-            <p className="font-semibold mt-8 mb-4">面试当天注意事项：</p>
-            <ul className="list-disc pl-6 space-y-3">
-              <li>着装得体，展现专业形象</li>
-              <li>提前15分钟到达（线上面试提前测试设备）</li>
-              <li>准备好笔记本和笔，记录重要信息</li>
-              <li>准备至少3个有深度的问题向面试官提问</li>
-              <li>保持积极的态度和良好的肢体语言</li>
-            </ul>
+            <p>3、重新详述一下这个职业的定位：</p>
 
-            <p className="mt-8 font-semibold">常见面试问题示例：</p>
-            <ol className="list-decimal pl-6 space-y-3">
-              <li>请介绍一下您自己和您的背景</li>
-              <li>为什么对金融交易感兴趣？</li>
-              <li>描述一次您在压力下做出重要决策的经历</li>
-              <li>您如何看待风险管理？</li>
-              <li>您的长期职业目标是什么？</li>
-              <li>您如何处理失败和挫折？</li>
-              <li>为什么选择明道交易？</li>
-            </ol>
+            <p>团队长的职责是将你从一个对系统不熟悉的新手（小白）培养成一个高效的士兵（印钞机），随后持续地从你的工作成果中获取剩余价值。你的工作成果则是从你在市场（战场）中凭借个人勇气和能力所获得的收益，而这个战场上有如恒河中所有沙数一样多的财富，有本事可以随时取随遍取。你可以把自己理解为：杀手、雇佣兵、冲浪者，强盗、赌徒……等等需要独立思考、勇敢面对挑战的孤勇者。</p>
 
-            <p className="mt-8">请记住，面试是双向的过程。我们在评估您的同时，您也在评估我们是否是您理想的工作场所。请充分利用这个机会了解我们的团队和文化。</p>
+            <p>4、职业阶梯：</p>
 
-            <p className="mt-8 font-semibold">预约面试：</p>
-            <p>请访问我们的面试预约系统，选择适合您的时间段。我们会在24小时内确认您的预约。</p>
+            <p>交易员（士兵）：在20个工作日期间认真接受密集训练，争取迅速成长为一名战士。在此期间如果你穿过了重重筛网，通过考核证明了自己，你将正式加入团队，开始你的交易员生涯，并享受一段被榨取利益（与团队长收益分成）的时光。当然，那个时候你肯定已经不关心钱了，反正没有任何行业的"员"的职位收入能超过交易员。</p>
 
-            <p className="mt-12 text-right">
-              <span className="block">祝您面试顺利！</span>
-              <span className="block">明道交易人力资源部</span>
-            </p>
-          </div>
-        </div>
+            <p>团队长（军官）：在前线拼杀过一段时间后，若你感兴趣，你将可以尝试组建团队 ，你将训练新兵，给他们讲述你在战场上的故事，此时你便成了"军官"。上战场不是你的任务了，你将为他们分配资金和策略，在指挥所里喝茶、监视、榨取团队的剩余价值，此时你就已经"财务自由"了。</p>
 
-        {/* 第三封信 - 筛选标准 */}
-        <div className="bg-white rounded-2xl shadow-xl p-12 border border-slate-200">
-          <h2 className="text-3xl font-bold mb-8 text-slate-800 border-b-2 border-slate-200 pb-4">筛选标准</h2>
-          <div className="prose prose-lg max-w-none text-slate-700 leading-relaxed space-y-6">
-            <p className="text-xl font-semibold mb-6">明道交易人才筛选标准：</p>
+            <p>基金经理（统帅）：当你带出来的新兵成长为团队长，就像树木长出枝丫，你拥有了多个团队，此时你便可以成立自己的私募基金，并规模化管理多种衍生品。团队长已经"财务自由"何况拥有多个团队的基金经理，此时你已经是半退休的状态，并且拥有永续不断的被动收入。</p>
 
-            <p>为了确保我们选拔到最优秀的人才，我们制定了一套全面的筛选标准。这些标准涵盖了专业能力、个人素质和文化契合度等多个维度。</p>
+            <p>5、总结：</p>
 
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-lg mb-8 border-l-4 border-blue-500">
-              <h3 className="font-bold text-xl mb-4 text-blue-900">核心能力要求</h3>
+            <p>7~20 个工作日就能看清楚你是否有缘和我们一起战斗，或者说有能力胜任这个职位。最终只会有以下结局：</p>
 
-              <div className="space-y-6">
-                <div>
-                  <h4 className="font-semibold text-lg mb-3 text-slate-800">1. 专业知识（权重：30%）</h4>
-                  <ul className="list-disc pl-6 space-y-2">
-                    <li>金融市场基础知识扎实</li>
-                    <li>了解各类金融工具和衍生品</li>
-                    <li>熟悉技术分析和基本面分析</li>
-                    <li>具备风险管理意识</li>
-                  </ul>
-                </div>
+            <p>结局1：如果你不适合这行（无法从大海里舀水），你会在20个工作日内主动离开（或让你被动离开）</p>
 
-                <div>
-                  <h4 className="font-semibold text-lg mb-3 text-slate-800">2. 分析能力（权重：25%）</h4>
-                  <ul className="list-disc pl-6 space-y-2">
-                    <li>数据分析和解读能力</li>
-                    <li>逻辑思维和推理能力</li>
-                    <li>问题识别和解决能力</li>
-                    <li>市场趋势判断能力</li>
-                  </ul>
-                </div>
+            <p>结局2：你恰好适合，通过了考验。上述职业阶梯将为你开始，命运的齿轮也开始转动。</p>
 
-                <div>
-                  <h4 className="font-semibold text-lg mb-3 text-slate-800">3. 心理素质（权重：20%）</h4>
-                  <ul className="list-disc pl-6 space-y-2">
-                    <li>压力承受能力</li>
-                    <li>情绪控制能力</li>
-                    <li>决策果断性</li>
-                    <li>风险承受能力</li>
-                  </ul>
-                </div>
+            <p>根据以往的经验，统计下来结局2的比例小于18%，但对于你个人来说，概率是1%或90%，你是否愿意"赌"一把</p>
 
-                <div>
-                  <h4 className="font-semibold text-lg mb-3 text-slate-800">4. 学习能力（权重：15%）</h4>
-                  <ul className="list-disc pl-6 space-y-2">
-                    <li>快速学习新知识的能力</li>
-                    <li>自我提升的主动性</li>
-                    <li>适应变化的灵活性</li>
-                    <li>持续改进的意识</li>
-                  </ul>
-                </div>
+            <p>有人问："培训期间给钱吗？"，答案是不会。但是显然你明白的，本行业不适合这么问。因为，不久的未来你能体会，摆在面前的不是一份普通应聘工作，而是一次人生道路的抉择！对于职业交易员来说，无论哪个结果，"几天的培训补助"，都不应该是你看中的。另外，不可能给每个不确定适合者发钱，毕竟这个行业职位不一定适合每个人，在此再次强调：选择权在双方。如果你看到了这里，祝贺你，初步的筛选已经完成。加我的微信：mojie_yc，并发送代码：mojie101，你的团队长会给你报名表。</p>
 
-                <div>
-                  <h4 className="font-semibold text-lg mb-3 text-slate-800">5. 团队协作（权重：10%）</h4>
-                  <ul className="list-disc pl-6 space-y-2">
-                    <li>沟通表达能力</li>
-                    <li>团队合作精神</li>
-                    <li>领导潜力</li>
-                    <li>文化契合度</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <p>最后多说一句：你应该清楚，你面临的最大风险就是在训练期间被淘汰，而你的成本是时间（当然这取决于你如何看待这20天的培训，是否认真对待，是否问心无愧）。</p>
 
-            <div className="bg-amber-50 p-6 rounded-lg border-l-4 border-amber-500 mb-8">
-              <h3 className="font-bold text-lg mb-4 text-amber-900">评分标准</h3>
-              <div className="space-y-3">
-                <p><span className="font-semibold">优秀（90-100分）：</span>全面超出预期，展现卓越能力</p>
-                <p><span className="font-semibold">良好（80-89分）：</span>符合所有要求，表现出色</p>
-                <p><span className="font-semibold">合格（70-79分）：</span>基本符合要求，有发展潜力</p>
-                <p><span className="font-semibold">待提高（60-69分）：</span>部分符合要求，需要培训</p>
-                <p><span className="font-semibold">不合格（60分以下）：</span>不符合基本要求</p>
-              </div>
-            </div>
-
-            <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
-              <h3 className="font-bold text-lg mb-4 text-green-900">录用决策流程</h3>
-              <ol className="list-decimal pl-6 space-y-3">
-                <li>所有面试官独立评分</li>
-                <li>汇总各维度得分</li>
-                <li>计算加权总分</li>
-                <li>总分≥80分进入候选池</li>
-                <li>招聘委员会综合评估</li>
-                <li>最终录用决定</li>
-              </ol>
-            </div>
-
-            <p className="mt-8 italic text-slate-600">
-              注：以上标准仅供参考。我们相信每个人都有独特的优势和潜力。即使某些方面暂时不足，只要您展现出强烈的学习意愿和成长潜力，我们都愿意给予机会。
-            </p>
-
-            <p className="mt-12 text-center font-semibold text-lg text-slate-800">
-              期待与优秀的您共同成长！
-            </p>
+            <p className="font-semibold text-xl mt-8">万物皆交易，人生需负熵。未来已来，只是分布不均。</p>
           </div>
         </div>
       </div>

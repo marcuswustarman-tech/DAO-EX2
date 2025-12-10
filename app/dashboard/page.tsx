@@ -69,6 +69,16 @@ export default function DashboardPage() {
         <div className="min-h-screen bg-neutral-950 text-white">
           <div className="container mx-auto px-4 py-8">
             <div className="max-w-7xl mx-auto">
+              {/* 返回按钮 */}
+              <div className="mb-6">
+                <button
+                  onClick={() => router.push('/console')}
+                  className="text-neutral-400 hover:text-white transition-colors"
+                >
+                  ← 返回控制台
+                </button>
+              </div>
+
               {/* 欢迎区域 */}
               <div className="mb-8">
                 <h1 className="text-3xl font-serif mb-2">
@@ -233,6 +243,16 @@ export default function DashboardPage() {
         <div className="min-h-screen bg-neutral-950 text-white">
           <div className="container mx-auto px-4 py-8">
             <div className="max-w-7xl mx-auto">
+              {/* 返回按钮 */}
+              <div className="mb-6">
+                <button
+                  onClick={() => router.push('/console')}
+                  className="text-neutral-400 hover:text-white transition-colors"
+                >
+                  ← 返回控制台
+                </button>
+              </div>
+
               {/* 欢迎区域 */}
               <div className="mb-8">
                 <h1 className="text-3xl font-serif mb-2">
