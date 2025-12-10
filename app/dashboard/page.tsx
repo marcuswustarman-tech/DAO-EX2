@@ -12,6 +12,7 @@ export default function DashboardPage() {
   const router = useRouter();
   const [dashboardData, setDashboardData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -28,10 +29,23 @@ export default function DashboardPage() {
   const fetchDashboardData = async () => {
     try {
       const response = await fetch('/api/dashboard');
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Dashboard API error:', response.status, response.statusText, errorText);
+        setError(`加载失败 (${response.status}): ${response.statusText}`);
+        setLoading(false);
+        return;
+      }
       const data = await response.json();
-      setDashboardData(data);
+      console.log('Dashboard data:', data);
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setDashboardData(data);
+      }
     } catch (error) {
       console.error('Error fetching dashboard:', error);
+      setError('网络错误，请刷新页面重试');
     } finally {
       setLoading(false);
     }
@@ -43,6 +57,27 @@ export default function DashboardPage() {
         <AppNavbar />
         <div className="flex items-center justify-center" style={{ minHeight: 'calc(100vh - 80px)' }}>
           <div className="text-neutral-400">加载中...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-neutral-950">
+        <AppNavbar />
+        <div className="flex flex-col items-center justify-center gap-4" style={{ minHeight: 'calc(100vh - 80px)' }}>
+          <div className="text-red-400">{error}</div>
+          <button
+            onClick={() => {
+              setError(null);
+              setLoading(true);
+              fetchDashboardData();
+            }}
+            className="px-6 py-2 bg-accent text-white hover:bg-accent/90 transition-colors"
+          >
+            重新加载
+          </button>
         </div>
       </div>
     );
