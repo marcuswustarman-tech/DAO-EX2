@@ -39,23 +39,23 @@ export default function DashboardPage() {
 
   if (status === 'loading' || loading) {
     return (
-      <>
+      <div className="min-h-screen bg-neutral-950">
         <AppNavbar />
-        <div className="min-h-screen bg-neutral-950 flex items-center justify-center">
+        <div className="flex items-center justify-center" style={{ minHeight: 'calc(100vh - 80px)' }}>
           <div className="text-neutral-400">加载中...</div>
         </div>
-      </>
+      </div>
     );
   }
 
   if (!session?.user || !dashboardData) {
     return (
-      <>
+      <div className="min-h-screen bg-neutral-950">
         <AppNavbar />
-        <div className="min-h-screen bg-neutral-950 flex items-center justify-center">
+        <div className="flex items-center justify-center" style={{ minHeight: 'calc(100vh - 80px)' }}>
           <div className="text-neutral-400">暂无Dashboard权限</div>
         </div>
-      </>
+      </div>
     );
   }
 
@@ -64,7 +64,7 @@ export default function DashboardPage() {
     const { progress, currentStage, pendingAssignments, recentReviews, stats } = dashboardData;
 
     return (
-      <>
+      <div className="min-h-screen bg-neutral-950">
         <AppNavbar />
         <div className="min-h-screen bg-neutral-950 text-white">
           <div className="container mx-auto px-4 py-8">
@@ -229,7 +229,7 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 
@@ -238,7 +238,7 @@ export default function DashboardPage() {
     const { stats, recentAssignments, stuckStudents } = dashboardData;
 
     return (
-      <>
+      <div className="min-h-screen bg-neutral-950">
         <AppNavbar />
         <div className="min-h-screen bg-neutral-950 text-white">
           <div className="container mx-auto px-4 py-8">
@@ -346,9 +346,16 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 
-  return null;
+  return (
+    <div className="min-h-screen bg-neutral-950">
+      <AppNavbar />
+      <div className="flex items-center justify-center" style={{ minHeight: 'calc(100vh - 80px)' }}>
+        <div className="text-neutral-400">加载中...</div>
+      </div>
+    </div>
+  );
 }
