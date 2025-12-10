@@ -222,6 +222,11 @@ export async function GET() {
   }
 
   const roleStatus = session.user.role_status as any;
+  console.log('Dashboard API - User role_status:', roleStatus);
+  console.log('Dashboard API - User ID:', session.user.id);
+  console.log('Dashboard API - isTeamLeader:', isTeamLeader(roleStatus));
+  console.log('Dashboard API - isActiveStudent:', isActiveStudent(roleStatus));
+  console.log('Dashboard API - canApplyInterview:', canApplyInterview(roleStatus));
 
   // 团队长Dashboard
   if (isTeamLeader(roleStatus)) {
@@ -238,5 +243,14 @@ export async function GET() {
     return getProspectiveStudentDashboard(session.user.id);
   }
 
-  return NextResponse.json({ error: 'No dashboard available for your role' }, { status: 403 });
+  console.error('Dashboard API - No matching role for:', roleStatus);
+  return NextResponse.json({
+    error: `No dashboard available for role: ${roleStatus}`,
+    debug: {
+      roleStatus,
+      isTeamLeader: isTeamLeader(roleStatus),
+      isActiveStudent: isActiveStudent(roleStatus),
+      canApplyInterview: canApplyInterview(roleStatus)
+    }
+  }, { status: 403 });
 }
