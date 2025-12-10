@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { canSubmitAssignment } from '@/lib/permissions';
 
 const ALLOWED_FILE_TYPES = [
@@ -16,7 +16,7 @@ const ALLOWED_FILE_TYPES = [
 
 const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB
 
-export default function SubmitAssignmentPage() {
+function SubmitAssignmentForm() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -265,5 +265,17 @@ export default function SubmitAssignmentPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function SubmitAssignmentPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-neutral-950 flex items-center justify-center">
+        <div className="text-neutral-400">加载中...</div>
+      </div>
+    }>
+      <SubmitAssignmentForm />
+    </Suspense>
   );
 }

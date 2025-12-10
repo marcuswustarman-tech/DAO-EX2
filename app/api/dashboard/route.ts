@@ -51,7 +51,7 @@ async function getStudentDashboard(userId: string) {
     }
 
     // 获取待提交的作业（当前阶段进行中但没有提交作业）
-    let pendingAssignments = [];
+    let pendingAssignments: any[] = [];
     if (currentStage && currentStage.progress?.status === '进行中') {
       const { data: assignments } = await supabase
         .from('assignments')
