@@ -62,7 +62,7 @@ export default function EmailAdmin() {
               </ul>
               <p>2. 在 .env.local 中配置：</p>
               <pre className="bg-neutral-950 p-4 rounded">
-EMAIL_USER=mojie_yc@outlook.com
+EMAIL_USER=alex294@163.com
 EMAIL_PASSWORD=你的应用专用密码
               </pre>
               <p>3. 运行邮件服务：</p>

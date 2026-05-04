@@ -42,8 +42,7 @@ export default function Footer() {
           <div>
             <h4 className="font-medium mb-4">联系方式</h4>
             <ul className="space-y-2 text-sm text-neutral-400">
-              <li>钉钉：iiu_z896deh8c</li>
-              <li>邮箱：mojie_yc@outlook.com</li>
+              <li>邮箱：alex294@163.com</li>
             </ul>
           </div>
         </div>

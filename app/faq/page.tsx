@@ -27,7 +27,7 @@ const faqs = [
     questions: [
       {
         q: '申请流程是怎样的？',
-        a: '1) 完成在线心理测评（30题，约8分钟）\n2) 测评通过后，联系我们的钉钉或邮箱进行深入沟通\n3) 面试通过后，进入30天孵化期\n4) 通过孵化期考核，获得实盘资金',
+        a: '1) 完成在线心理测评（30题，约8分钟）\n2) 测评通过后，联系我们的邮箱进行深入沟通\n3) 面试通过后，进入30天孵化期\n4) 通过孵化期考核，获得实盘资金',
       },
       {
         q: '心理测评主要考察什么？',
@@ -213,13 +213,8 @@ export default function FAQPage() {
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
               <div className="flex items-center gap-2">
-                <span className="text-neutral-600">钉钉：</span>
-                <span className="font-medium">iiu_z896deh8c</span>
-              </div>
-              <span className="hidden md:inline text-neutral-400">|</span>
-              <div className="flex items-center gap-2">
                 <span className="text-neutral-600">邮箱：</span>
-                <span className="font-medium">mojie_yc@outlook.com</span>
+                <span className="font-medium">alex294@163.com</span>
               </div>
             </div>
           </div>

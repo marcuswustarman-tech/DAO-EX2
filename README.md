@@ -191,5 +191,4 @@ Copyright © 2024 明DAO. 保留所有权利。
 
 ## 联系方式
 
-- 钉钉：iiu_z896deh8c
-- 邮箱：mojie_yc@outlook.com
+- 邮箱：alex294@163.com

@@ -11,7 +11,7 @@ export default function InterviewModal({ isOpen, onClose }: InterviewModalProps)
   if (!isOpen) return null;
 
   const handleEmailClick = () => {
-    window.location.href = 'mailto:mojie_yc@outlook.com?subject=mojie101';
+    window.location.href = 'mailto:alex294@163.com?subject=mojie101';
   };
 
   return (
@@ -38,7 +38,7 @@ export default function InterviewModal({ isOpen, onClose }: InterviewModalProps)
 
           <div className="mb-6 p-6 bg-neutral-50 border-l-4 border-accent">
             <p className="text-sm text-neutral-700 mb-2">
-              <strong>收件人：</strong> mojie_yc@outlook.com
+              <strong>收件人：</strong> alex294@163.com
             </p>
             <p className="text-sm text-neutral-700">
               <strong>邮件主题：</strong> mojie101
